@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "ionic-cordova-demo-app",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
