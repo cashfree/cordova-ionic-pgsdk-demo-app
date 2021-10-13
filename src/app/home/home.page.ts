@@ -94,7 +94,7 @@ export class HomePage implements AfterViewInit {
   }
 
   getUPIApps() {
-    console.log('getUPIApps invoked');
+    console.log('getUPIApps invoked1');
     PgCordovaWrapper.getUPIApps(this.onGetUPIAppsResponse, this.onUPIError);
   }
 
@@ -131,7 +131,7 @@ export class HomePage implements AfterViewInit {
   }
 
   private startPayment(mode: string, upiAppId: string) {
-    document.getElementById('response_text').innerHTML = 'Response will Show Here';
+    document.getElementById('tv_response').innerHTML = 'Response will Show Here';
     this.getParams().then((params) => {
       if (mode === WEB) {
         // CFPaymentServiceInstance.startPaymentWEB(params).then(this.onResult).catch(this.onError);
@@ -140,6 +140,7 @@ export class HomePage implements AfterViewInit {
         if (upiAppId !== null) {
           params.appName = upiAppId;
         }
+        // PgCordovaWrapper.startPaymentUPI(params, successFunction, failureFunction)
         PgCordovaWrapper.startPaymentUPI(params, this.onResult, this.onError);
         // CFPaymentServiceInstance.startPaymentUPI(params).then(this.onResult).catch(this.onError);
       }
@@ -149,20 +150,18 @@ export class HomePage implements AfterViewInit {
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
-  private onResult = (result: string) => {
-    console.log(JSON.stringify(result));
+  private onResult = (result: any) => {
     let output = '';
     const resultObject = JSON.parse(result);
     Object.keys(resultObject).forEach((key) => {
       if (key === 'signature') {
-        const shortString = result[key].substring(0, 5).concat('...');
+        const shortString = resultObject[key].substring(0, 5).concat('...');
         output = output.concat(`${key} : ${shortString} <br>`);
       } else {
         output = output.concat(`${key} : ${resultObject[key]} <br>`);
       }
     });
-    console.log(JSON.stringify(result));
-    document.getElementById('response_text').innerHTML = output;
+    document.getElementById('tv_response').innerHTML = output;
   };
 
   private onError = (error: any) => {
@@ -171,13 +170,13 @@ export class HomePage implements AfterViewInit {
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   private onGetUPIAppsResponse = (result: any) => {
-    console.log(JSON.stringify(result));
+    console.log('result' + JSON.stringify(result));
     // @ts-ignore
     this.handleUPIApps(result);
   };
 
   private onUPIError = (error: any) => {
-    console.log(error.message);
+    console.log('UPI Error : ' + error.message);
   };
 
   private changeUPIArray(array: string[]) {

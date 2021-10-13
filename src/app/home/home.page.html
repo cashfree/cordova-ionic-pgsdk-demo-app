@@ -14,16 +14,18 @@
   </ion-header>
 
   <div id="grid">
-    <ion-button class="payment-buttons" fill="solid" (click)="startPaymentWeb()">
-      Start Payment WEB
-    </ion-button>
-    <ion-button class="payment-buttons" fill="solid" (click)="startPaymentUPI(null)">
-      Start Payment UPI
-    </ion-button>
+    <div class="button_grid">
+      <ion-button class="payment-buttons" fill="solid" (click)="startPaymentWeb()">
+        Start Payment WEB
+      </ion-button>
+      <ion-button class="payment-buttons" fill="solid" (click)="startPaymentUPI(null)">
+        Start Payment UPI
+      </ion-button>
+    </div>
     <div id="upi_icon_containers">
       <ion-spinner name="dots" id="spinner"></ion-spinner>
     </div>
-    <ion-text id="response_text">
+    <ion-text id="tv_response">
       Response will Show Here
     </ion-text>
   </div>

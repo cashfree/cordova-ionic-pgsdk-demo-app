@@ -6,9 +6,19 @@
   align-items: center;
 }
 
-#grid .payment-buttons {
+.button_grid {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+}
+
+#button_grid .payment-buttons {
   width: 60%;
-  margin-top: 16px;
+  height: 100px;
+  margin-top: 30px;
 }
 
 #grid ion-text {
@@ -56,7 +66,7 @@
   height: 50px;
 }
 
-#grid #response_text {
+#grid #tv_response {
   justify-content: center;
   margin-left: 24px;
   margin-right: 24px;
