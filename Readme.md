@@ -10,12 +10,11 @@ For setting up cordova environment refer [here](https://cordova.apache.org/docs/
 Enter the following command in your shell.
 ### Step 1 (Clone the Repo)
 ```shell
-git clone https://github.com/cashfree/cordova-pgsdk-demo-app.git
+git clone https://github.com/cashfree/cordova-ionic-pgsdk-demo-app.git
 ```
 ### Step 2 (Install dependencies)
 ```shell
 npm install
-cordova plugin add
 ```
 ### Step 3 (Sync project)
 ```shell
