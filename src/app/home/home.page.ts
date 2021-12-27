@@ -1,5 +1,7 @@
+/* eslint-disable object-shorthand */
 import {AfterViewInit, Component, ViewEncapsulation} from '@angular/core';
 import {HTTP} from '@ionic-native/http/ngx';
+import {Injectable} from '@angular/core';
 
 const WEB = 'WEB';
 const UPI = 'UPI';
@@ -9,6 +11,7 @@ const appSecret = '--app-secret-here--'; //Enter your appSecret here (not to be 
 
 const env = 'PROD'; //'TEST' or 'PROD'
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 declare let PgCordovaWrapper: any;
 
 @Component({
@@ -50,6 +53,8 @@ export class HomePage implements AfterViewInit {
       const headers = {
         'x-client-id': appId,
         'x-client-secret': appSecret,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        'Content-Type': 'application/x-www-form-urlencoded'
       };
 
       this.http.setDataSerializer('json');
@@ -134,15 +139,12 @@ export class HomePage implements AfterViewInit {
     document.getElementById('tv_response').innerHTML = 'Response will Show Here';
     this.getParams().then((params) => {
       if (mode === WEB) {
-        // CFPaymentServiceInstance.startPaymentWEB(params).then(this.onResult).catch(this.onError);
         PgCordovaWrapper.startPaymentWEB(params, this.onResult, this.onError);
       } else {
         if (upiAppId !== null) {
           params.appName = upiAppId;
         }
-        // PgCordovaWrapper.startPaymentUPI(params, successFunction, failureFunction)
         PgCordovaWrapper.startPaymentUPI(params, this.onResult, this.onError);
-        // CFPaymentServiceInstance.startPaymentUPI(params).then(this.onResult).catch(this.onError);
       }
     }).catch((error) => {
       console.log(error.message);
